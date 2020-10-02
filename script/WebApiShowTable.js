@@ -1,4 +1,6 @@
 var Url="https://localhost:44319/api/Students/";
+
+//Student List Show Method
 function GetRecordFromWebApi()
 {
 
@@ -30,6 +32,89 @@ $.get(Url, function(data, status){
 
 });
 }
+
+// Sent Edit Student Id
+function editstudent(id)
+{
+    // First send ajax call fro getById
+    // success
+    // data
+    // href(/Pahge/+ data)
+    
+   window.document.location ='WebApiUpdateStd.html' +'?' + id;
+   
+
+}
+var getid=document.location.search.split('?');
+var h =getid[1];
+// Edit Student Record Set IN Field
+function ValueSetInField()
+{
+    debugger;
+    
+    $.get(Url +  h ,function(data , status){
+        $('#esname').val(data.Studentname);
+        $('#eemail').val(data.StudentEmail);
+        $('#ephone').val(data.PhoneNumber);
+        $('#edob').val(data.DateOfBirth);
+        $('#epassword').val(data.Password);
+        $('#econfirmpassword').val(data.ConfirmPawword);
+
+    });
+  // alert(h);
+    
+  
+}
+
+// Update Student Methid
+$(document).ready(function(){
+    $("#btn").click(function(){
+        var name = $("#esname").val();
+        var email = $("#eemail").val();
+        var phonenumber = $("#ephone").val();
+    
+        var gdate = $("#edob").val();
+        var cdate = gdate.toString();
+        var password = $("#epassword").val();
+        var confirmpassword = $("#econfirmpassword").val();
+        var checkinput = inputfieldvalidate(name, email, phonenumber, password, confirmpassword);
+        if(checkinput)
+        {
+              
+            var student = {
+                Studentname: name,
+                StudentEmail: email,
+                PhoneNumber: phonenumber,
+                DateOfBirth: cdate,
+               Password: password,
+               ConfirmPawword: confirmpassword,
+        
+            };
+            
+            $.ajax({
+                
+                url:Url + h ,
+                method:"PUT",
+                data:student,
+                success:function(data){
+                    if(data==true)
+                    {
+                        window.location.href="WebApiStudentList.html";
+                    }
+                }
+                
+            });
+           
+            
+    
+    
+    
+        }
+       
+    });
+  });
+  // Delete Student Function
+
 function deleterecord(id)
 {
     debugger;
@@ -53,6 +138,8 @@ function deleterecord(id)
 
 
 
+
+//Form Submit Function Call
 $('#form').submit(function() {
    debugger;
     
@@ -60,6 +147,8 @@ $('#form').submit(function() {
         
     
 });
+
+// Get Student Record And save Method
 function getrecordaddsave() {
 
     debugger;
@@ -102,6 +191,8 @@ function getrecordaddsave() {
     
     
     }
+
+    //Input Field Validation
     function inputfieldvalidate(nam, em, pon, pass, conpass) {
         if (namedfieldcheck(nam)) {
             $("#chname").text("");
