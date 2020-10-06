@@ -12,20 +12,24 @@ namespace WebApi.Controllers
 {
     public class StudentsController : ApiController
     {
-        private StudentRepository _studentRepository;
+        private StudentRepositoryP _studentRepositoryp;
         public StudentsController()
         {
-            _studentRepository = new StudentRepository();
+            _studentRepositoryp = new StudentRepositoryP();
         }
 
         [HttpPost]
-        public IHttpActionResult AddNewStudent([FromBody]Student addstd)
+        //api/Student/?student=student&&courseid=arr
+        public IHttpActionResult AddNewStudent([FromBody]Student studentes , string courseID)
         {
-            var item = _studentRepository.AddStudent(addstd);
-            if(item == true)
+           
+            var item = _studentRepositoryp.AddStudent(studentes,courseID);
+            if (item == true)
             {
                 return Ok(item);
             }
+            
+           
             return BadRequest("Student not added");
         }
 
@@ -33,29 +37,65 @@ namespace WebApi.Controllers
 
         public IHttpActionResult getStudent()
         {
-            var item = _studentRepository.getStudentList();
-            return Ok(item);
+            try
+            {
+                var item = _studentRepositoryp.GetModel();
+                if(item == null)
+                {
+                    return Ok("No Record In Table");
+                }
+                return Ok(item);
+            }
+            catch(Exception e)
+            {
+                return Ok("");
+            }
+            
         }
         [HttpDelete]
         public IHttpActionResult DeleteStudent(int id)
         {
-            var item = _studentRepository.deletestd(id);
-            if(item == true)
+
+            try
             {
-                return Ok(item);
+                var check = _studentRepositoryp.DeleteModel(id);
+                return Ok(check);
             }
-            return BadRequest("Student not Deleted");
+            catch(Exception e)
+            {
+                return Ok("Student not Deleted");
+            }
+              
+
+           
+
+
 
         }
+
         [HttpPut]
 
-        public IHttpActionResult UpdateStudent([FromBody]Student upstd,int id)
+        public IHttpActionResult UpdateStudent([FromBody]Student student,int id)
+
         {
-            var item = _studentRepository.updateStudent(upstd, id);
-            if(item == true)
+            // var item = _studentRepositoryp.GetModelById(id);
+            try
             {
-                return Ok(item);
+                if (ModelState.IsValid)
+                {
+                    return Ok(_studentRepositoryp.UpdateModel(student));
+                }
             }
+            catch(Exception e)
+            {
+
+            }
+            
+
+            //if(item == true)
+            //{
+            //    return Ok(item);
+            //}
             return BadRequest("Data Not Found");
         }
 
@@ -63,7 +103,7 @@ namespace WebApi.Controllers
         
         public IHttpActionResult getStudentById(int id)
         {
-            var Item = _studentRepository.SearchStudent(id);
+            var Item = _studentRepositoryp.GetModelById(id);
             if(Item!=null)
             {
                 return Ok(Item);
