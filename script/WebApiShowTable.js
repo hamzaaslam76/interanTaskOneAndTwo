@@ -1,5 +1,3 @@
-//var BaseUrl="https://localhost:44319/api/";
-
 
 var BaseUrl="https://localhost:44319/api/";
 
@@ -18,33 +16,29 @@ function onSuccess(data) {
         data.forEach((value, index, array) => {
 
             var row = `<tr>
-                <td>${value.StudentId}</td>
-                <td>${value.Studentname}</td>
-                <td>${value.StudentEmail}</td>
-                <td>${value.PhoneNumber}</td>
-                <td>${value.DateOfBirth}</td>
-                <td>${value.Password}</td>
+                <td>${value.studentDto.StudentId}</td>
+                <td>${value.studentDto.Studentname}</td>
+                <td>${value.studentDto.StudentEmail}</td>
+                <td>${value.studentDto.PhoneNumber}</td>
+                <td>${value.studentDto.DateOfBirth}</td>
+                <td>${value.studentDto.Password}</td>
+                <td>${value.StudentCourseCount}</td>
               
-                <td><button onclick=editstudent(${value.StudentId})> Edit</button></td>
+                <td><button onclick=editstudent(${value.studentDto.StudentId})> Edit</button></td>
                 
-                <td><button onclick=deleterecord(${value.StudentId})>    Delete</button></td>
+                <td><button onclick=deleterecord(${value.studentDto.StudentId})>    Delete</button></td>
                  </tr>`
 
            $("#myTable").append(row);
 
         });
-    }
-    
+    }   
 }
-
-
 }
 
 // Sent Edit Student Id
 function editstudent(id)
 {
-    
-    
    window.document.location ='WebApiUpdateStd.html' +'?' + id;
 
 }
@@ -52,23 +46,32 @@ var getid=document.location.search.split('?');
 var EditId =getid[1];
 // Edit Student Record Set IN Field
 function ValueSetInField()
-{
-    debugger;
-    var Url =BaseUrl + "Students/" + EditId;
-    
+{   
+    var Url =BaseUrl + "Students/" + EditId;   
     AjaxMethodFunction(Url ,null,'GET',onSuccess);
     function onSuccess(data) {
-        $('#esname').val(data.Studentname);
-        $('#eemail').val(data.StudentEmail);
-        $('#ephone').val(data.PhoneNumber);
-        $('#edate').val(data.DateOfBirth);
-        $('#epassword').val(data.Password);
-        $('#econfirmpassword').val(data.ConfirmPawword);
-    }
-   
-  
+        console.log(data);
     
-  
+        $('#esname').val(data.studentDto.Studentname);
+        $('#eemail').val(data.studentDto.StudentEmail);
+        $('#ephone').val(data.studentDto.PhoneNumber);
+        $('#edate').val(data.studentDto.DateOfBirth);
+        $('#epassword').val(data.studentDto.Password);
+        $('#econfirmpassword').val(data.studentDto.ConfirmPawword);
+        data.StudentCourses.forEach(function(value,index,array)
+        {
+            $('.select2').each(function(){
+                
+                var option=$(this);
+                  var id=option.val();
+                  if(value.CourseId == id)
+                  {
+                    
+                     $(this).prop('selected', true);
+                  }
+            });
+        });
+    }
 }
 
 // Update Student Method
@@ -77,7 +80,7 @@ function ValueSetInField()
         var name = $("#esname").val();
         var email = $("#eemail").val();
         var phonenumber = $("#ephone").val();
-    
+        var Editselect = $("#myselect").val();
         var gdate = $("#edate").val();
         var cdate = gdate.toString();
         var password = $("#epassword").val();
@@ -87,6 +90,7 @@ function ValueSetInField()
         {
               
             var student = {
+                StudentId:EditId ,
                 Studentname: name,
                 StudentEmail: email,
                 PhoneNumber: phonenumber,
@@ -95,9 +99,10 @@ function ValueSetInField()
                ConfirmPawword: confirmpassword,
         
             };
-            var Url = BaseUrl + "Students/" + EditId;
-        
-             AjaxMethodFunction(Url, student , 'PUT', onSuccess);
+            var strarray = Editselect.toString();
+            var Url = BaseUrl + "Students/";
+             debugger;
+             AjaxMethodFunction(Url + "?array=" + strarray, student , 'PUT', onSuccess);
              function onSuccess(data)
              {
                 if(data == true)
@@ -129,11 +134,6 @@ function deleterecord(id)
              }
 
 }
-
-
-
-
-
 
 // Get Student Record And save Method
 $(document).ready(function(){
@@ -247,15 +247,13 @@ function onSuccess(data)
     {
       data.forEach((value,index,array)=>
       {
-        var option =`<option value = "${value.CourseId}">${value.CourseName}</option>`
+        var option =`<option class="select2" value = "${value.CourseId}">${value.CourseName}</option>`
         $("#myselect").append(option);
-
+       ;
       
     });
-
 }
-}
-    
+}  
 }
 
 
