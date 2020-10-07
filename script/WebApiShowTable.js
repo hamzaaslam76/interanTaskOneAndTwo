@@ -39,6 +39,7 @@ function onSuccess(data) {
 // Sent Edit Student Id
 function editstudent(id)
 {
+    alert(id);
    window.document.location ='WebApiUpdateStd.html' +'?' + id;
 
 }
@@ -47,6 +48,7 @@ var EditId =getid[1];
 // Edit Student Record Set IN Field
 function ValueSetInField()
 {   
+    debugger;
     var Url =BaseUrl + "Students/" + EditId;   
     AjaxMethodFunction(Url ,null,'GET',onSuccess);
     function onSuccess(data) {
@@ -61,14 +63,10 @@ function ValueSetInField()
         data.StudentCourses.forEach(function(value,index,array)
         {
             $('.select2').each(function(){
-                
-                var option=$(this);
-                  var id=option.val();
-                  if(value.CourseId == id)
-                  {
-                    
-                     $(this).prop('selected', true);
-                  }
+                if(value.CourseId == $(this).val())
+                {
+                $(this).prop("selected",value.CourseId == $(this).val());
+            }
             });
         });
     }
@@ -176,7 +174,7 @@ $(document).ready(function(){
             function onSuccess(data)
             {
                
-               if(data == true)
+               if(data)
                {
                location.reload();
                }
