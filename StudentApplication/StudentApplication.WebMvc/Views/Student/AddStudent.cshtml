@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Models.DataModels.Course>
+
+@{
+    ViewBag.Title = "AddStudent";
+}
+<head>
+
+    <script src="~/MyScrpit/Validation.js"></script>
+    <script src="~/MyScrpit/MvcAjaxUrl.js"></script>
+
+    <script src="~/MyScrpit/AddStudent.js"></script>
+</head>
+
+<div class="bs-example row">
+    <div class="col-md-6">
+        <div class="form-group col-md-8">
+            <label>Name</label>
+            <input type="text" name="Studentname" class="form-control" id="sname" placeholder="Name">
+            <div id="chname" class="text-danger"></div>
+        </div>
+
+    </div>
+    <div class="form-group col-md-6 ">
+        <div class="form-group col-md-8">
+            <label>Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+            <div id="chemail" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group col-md-8">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+            <div id="chphone" class="text-danger"></div>
+        </div>
+
+    </div>
+    <div class="form-group col-md-6 ">
+        <div class="form-group col-md-8">
+            <label>Course</label>
+            <select id="myselect" class="form-control" multiple="multiple">
+                @foreach (var item in Model)
+                {
+                    <option class="select2" value="@item.CourseId">
+                        @item.CourseName
+
+                    </option>
+                }
+
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group col-md-8">
+            <label>Date</label>
+            <input type="date" class="form-control" id="date" placeholder="Date">
+            <div id="chdate" class="text-danger"></div>
+        </div>
+
+    </div>
+    <div class="form-group col-md-6 ">
+        <div class="form-group col-md-8">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+            <div id="chpassword" class="text-danger"></div>
+        </div>
+
+    </div>
+    <div class="form-group col-md-6 ">
+        <div class="form-group col-md-8">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password">
+            <div id="chconpassword" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6 ">
+        <div class="form-group col-md-8">
+            <button id="btn" class="btn btn-success">Save</button>
+            <a href="@Url.Action("Index","Student")">ListOfStudent</a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    
+
+</script>

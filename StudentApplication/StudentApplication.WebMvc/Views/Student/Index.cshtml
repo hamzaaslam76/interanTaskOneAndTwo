@@ -1,0 +1,52 @@
+﻿@model List<Repository.DTOModel.FullStudentDto>
+@{
+    ViewBag.Title = "Index";
+    var valu = ViewBag.x;
+    var message = ViewBag.message;
+}
+<head>
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+</head>
+
+@if (message != "" && message!=null)
+{
+    <h1>@message</h1>
+}
+<table id="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date of birth</th>
+            <th>Password</th>
+            <th>Total Course</th>
+            <th>Action</th>
+            
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var student in Model)
+        {
+        <tr>
+            <td>@student.studentDto.StudentId</td>
+            <td>@student.studentDto.Studentname</td>
+            <td>@student.studentDto.StudentEmail</td>
+            <td>@student.studentDto.PhoneNumber</td>
+            <td>@student.studentDto.DateOfBirth</td>
+            <td>@student.studentDto.Password</td>
+            <td>@student.StudentCourseCount</td>
+            <td>
+                <a class="editBtn btn btn-primary glyphicon glyphicon-edit" href="@Url.Action("EditId","Student",new {id = @student.studentDto.StudentId})">Edit</a>
+                <a class="deleteBtn glyphicon btn btn-danger glyphicon-remove" id="btn_Delete" href="@Url.Action("DeleteStudent","Student",new { id = @student.studentDto.StudentId })">Delete</a>
+            </td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+
