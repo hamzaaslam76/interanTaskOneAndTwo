@@ -1,5 +1,6 @@
 ﻿
-using Data.DataModdels;
+
+using Models.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,6 +16,8 @@ namespace Data.Context
         {
          
         }
-        public DbSet<student> students { get; set; }
+        public DbSet<Student> students { get; set; }
+        public DbSet<Course> courses { get; set; }
+        public DbSet<StudentCourse> studentCourses { get; set; }
     }
 }

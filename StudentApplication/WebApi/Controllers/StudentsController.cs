@@ -71,7 +71,7 @@ namespace WebApi.Controllers
          
                if (ModelState.IsValid)
                 {
-                    return Ok(_studentRepositoryp.updateStudent(student,  array));
+                    return Ok(_studentRepositoryp.UpdateStudent(student,  array));
                 }
               
             return BadRequest("Data Not Found");

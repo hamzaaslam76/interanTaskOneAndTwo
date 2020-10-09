@@ -1,18 +1,15 @@
 ﻿using Data.Context;
-using RepositoryPattern;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Repository.Repository
 {
     public class BaseRepository<T> : _IAllRepository<T> where T : class
     {
         private context _DbConetxt;
-        private DbSet<T> dbEntity;
+        private IDbSet<T> dbEntity;
         public BaseRepository()
         {
             _DbConetxt = new context();
@@ -21,6 +18,7 @@ namespace Repository.Repository
         }
         public bool DeleteModel(int ModelId)
         {
+
             T Model = dbEntity.Find(ModelId);
             if(Model !=null)
             {
@@ -61,7 +59,6 @@ namespace Repository.Repository
 
         public bool UpdateModel(T Model)
         {
-            dbEntity.Attach(Model);
             _DbConetxt.Entry(Model).State =  System.Data.Entity.EntityState.Modified;
              Save();
             return true;

@@ -1,0 +1,6 @@
+E:\InteranshipWork\TaskOneTwo\StudentApplication\RepositoryPattern\bin\Debug\RepositoryPattern.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\RepositoryPattern\bin\Debug\RepositoryPattern.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\RepositoryPattern\obj\Debug\RepositoryPattern.csprojAssemblyReference.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\RepositoryPattern\obj\Debug\RepositoryPattern.csproj.CoreCompileInputs.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\RepositoryPattern\obj\Debug\RepositoryPattern.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\RepositoryPattern\obj\Debug\RepositoryPattern.pdb

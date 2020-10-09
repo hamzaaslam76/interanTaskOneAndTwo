@@ -5,6 +5,7 @@ using Repository.DTOModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Repository.Repository
 {
@@ -33,13 +34,14 @@ namespace Repository.Repository
                        
                     }
                     DbContext.SaveChanges();
+                    return true;
                 }
                 catch (Exception e)
                 {
                     return false;
                 }
             }
-            return true;
+            
         }
 
         public List<FullStudentDto> GettAllStudents()
@@ -50,15 +52,11 @@ namespace Repository.Repository
                 List<FullStudentDto> StudentList = new List<FullStudentDto>();
                 try
                 {
-                         
-                    var stdList = DbContext.students.ToList();
                     var studentss = (from s in DbContext.students
                                      select new FullStudentDto()
                                      {
                                          studentDto = s,
-                                         StudentCourseCount = (from sc in DbContext.studentCourses.Where(x => x.StudentId == s.StudentId)
-                                                               select sc.StudentId
-                                                             ).Count()
+                                         StudentCourseCount = DbContext.studentCourses.Where(sc => sc.StudentId == s.StudentId).Count(),
                                      }
                                    ).ToList();
                     return studentss;
@@ -76,10 +74,14 @@ namespace Repository.Repository
             {
                 try
                 {
+                  //  List<CourseDto> AllCources = new List<CourseDto>();
+                  // Course  AllCources = (from c in DbConetxt.courses select c);
                     var EditStd = (from s in DbConetxt.students.Where(x => x.StudentId == stdid)
                                    select new FullStudentDtoo
                                    {
+
                                        studentDto = s,
+                                       Listcourses = (from c in DbConetxt.courses select new CourseDto {CourseId =c.CourseId,CourseName=c.CourseName }).ToList(),
                                        StudentCourses = (from sc in DbConetxt.studentCourses
                                                          join c in DbConetxt.courses on sc.CourseId equals c.CourseId
                                                          where sc.StudentId == stdid
@@ -98,7 +100,7 @@ namespace Repository.Repository
                 }
             }  
         }
-        public bool updateStudent(Student UpdateStd, string CourseArray)
+        public bool UpdateStudent(Student UpdateStd, string CourseArray)
         {
             var courseList = CourseArray.Split(',').ToList();
             using (var DbConetxt = new context())

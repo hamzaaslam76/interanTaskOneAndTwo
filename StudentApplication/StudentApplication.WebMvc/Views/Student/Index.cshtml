@@ -1,11 +1,15 @@
 ﻿@model List<Repository.DTOModel.FullStudentDto>
 @{
     ViewBag.Title = "Index";
-    var valu = ViewBag.x;
+   
     var message = ViewBag.message;
 }
 <head>
     <link href="~/Content/style.css" rel="stylesheet" />
+
+
+
+
 
 </head>
 
@@ -48,5 +52,21 @@
 
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+
+        $("#myTable").DataTable({
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+
+        });
+    });
+
+
+</script>
+
+
 
 

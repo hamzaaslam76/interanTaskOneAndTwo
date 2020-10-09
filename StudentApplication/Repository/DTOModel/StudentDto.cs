@@ -31,6 +31,7 @@ namespace Repository.DTOModel
     public class FullStudentDtoo
     {
         public Student studentDto { get; set; }
+        public List<CourseDto> Listcourses { get; set; }
         public List<CourseDto> StudentCourses { get; set; }
     }
 

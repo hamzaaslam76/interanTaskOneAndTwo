@@ -3,12 +3,15 @@ E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\Data.dll
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\Data.pdb
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\EntityFramework.dll
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\Models.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\Models.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\Models.dll.config
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\EntityFramework.xml
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\bin\Debug\EntityFramework.SqlServer.xml
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.csprojAssemblyReference.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.Migrations.studentcoursetableadded.resources
+E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.csproj.GenerateResource.cache
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.csproj.CopyComplete
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.dll
 E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.pdb
-E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.Migrations.AddStudetTable.resources
-E:\InteranshipWork\TaskOneTwo\StudentApplication\Data\obj\Debug\Data.csproj.GenerateResource.cache

@@ -52,10 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\context.cs" />
-    <Compile Include="DataModels\student.cs" />
-    <Compile Include="Migrations\202009300611188_AddStudetTable.cs" />
-    <Compile Include="Migrations\202009300611188_AddStudetTable.designer.cs">
-      <DependentUpon>202009300611188_AddStudetTable.cs</DependentUpon>
+    <Compile Include="Migrations\202010040945318_studentcoursetableadded.cs" />
+    <Compile Include="Migrations\202010040945318_studentcoursetableadded.designer.cs">
+      <DependentUpon>202010040945318_studentcoursetableadded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,8 +64,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009300611188_AddStudetTable.resx">
-      <DependentUpon>202009300611188_AddStudetTable.cs</DependentUpon>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{c4c91f93-173d-44cd-8e3d-161ac8b6ec8c}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010040945318_studentcoursetableadded.resx">
+      <DependentUpon>202010040945318_studentcoursetableadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

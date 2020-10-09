@@ -1,0 +1,31 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @helper myfirsthelper(string[] str)
+            {
+        <ul>
+            @foreach (var item in str)
+            {
+                <li>@item</li>
+            }
+        </ul>
+                 
+    }
+    </div>
+    <div>
+        @Html.ActionLink("click me","About", new { name = "hamza" })
+        @Html.TextBox("text1")
+        @myfirsthelper(new string[] { "1","2","3","4","5","6","7"})
+
+
+    </div>
+</body>
+</html>
