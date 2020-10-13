@@ -13,7 +13,9 @@ namespace Repository.Repository
         bool InsertModel(T Model);
         bool DeleteModel(int Model);
         bool UpdateModel(T Model);
+        bool DeleteModel(T Model);
+        bool AddRange(List<T> List);
+        bool DeleteRange(List<T> List);
         void    Save();
-
     }
 }

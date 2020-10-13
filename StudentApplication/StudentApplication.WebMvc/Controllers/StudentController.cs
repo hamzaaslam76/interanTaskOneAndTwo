@@ -20,22 +20,24 @@ namespace StudentApplication.WebMvc.Controllers
             _courseRepository = new CourseRepository();
 
         }
-       
-
         // GET: Student
         public ActionResult Index(string ErrorMessage)
-        {
-          List<FullStudentDto> stdList= _studentRepositoryp.GettAllStudents();
-           
+        { 
             if (ErrorMessage != "" && ErrorMessage != null)
             {
                 ViewBag.message = ErrorMessage;
             }
           
-                return View(stdList);
-            
+                return View();   
         }
+        [HttpPost]
+        public ActionResult LoardData(Pager pager)
+        {
+            List<FullStudentDto> StudentModel = _studentRepositoryp.GettAllStudents(pager);
 
+            return Json(new {draw = pager.draw ,recordsFiltered=StudentModel[0].TotalRecord,recordsTotal=StudentModel[0].TotalRecord,data=StudentModel},JsonRequestBehavior.AllowGet);
+
+        }
         // Add Cources in AddStudent Form
         [HttpGet]
         public ActionResult AddStudent()
@@ -45,7 +47,6 @@ namespace StudentApplication.WebMvc.Controllers
             return View(Getcourses);
 
         }
-       
         [HttpPost]
         public ActionResult AddStudentInDtabase( Student studentes, string courseId)
         {
@@ -53,8 +54,6 @@ namespace StudentApplication.WebMvc.Controllers
             return Json(Item,JsonRequestBehavior.AllowGet);
             
         }
-
-
         public ActionResult EditId(int id)
         {
             FullStudentDtoo GetEditStudent = _studentRepositoryp.SearchStudent(id);
@@ -66,21 +65,33 @@ namespace StudentApplication.WebMvc.Controllers
            var Item= _studentRepositoryp.UpdateStudent(studentes, courseId);
             return Json(Item);
         }
-
-      [HttpDelete]
+        // Without StorProcedure Delete Student
+        //public ActionResult DeleteStudent(int id)
+        //{
+        //    var Item = _studentRepositoryp.DeleteModel(id);
+        //    if (!Item)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", new { s = "record Does Not Deleted" });
+        //    }   
+        //}  
+         
+        // Delete Student Using Store Procedure
         public ActionResult DeleteStudent(int id)
         {
-            var Item = _studentRepositoryp.DeleteModel(id);
-            if (!Item) {
+            var Item = _studentRepositoryp.DleteStudent(id);
+            if (Item)
+            {
                 return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("Index",new { s="record Does Not Deleted"});
-
+                return RedirectToAction("Index", new { s = "record Does Not Deleted" });
             }
-            
         }
-        
+
     }
 }
