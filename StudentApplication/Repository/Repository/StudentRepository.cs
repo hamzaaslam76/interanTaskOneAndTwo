@@ -17,19 +17,18 @@ namespace Repository.Repository
             {
                 try
                 {
-                   var item= DbContext.AddStudentUsingStorProcedure(std.Studentname, std.StudentEmail, std.PhoneNumber, std.DateOfBirth, std.Password, std.ConfirmPawword,courseId);
-                    //InsertModel(std);
+                  // var item= DbContext.AddStudentUsingStorProcedure(std.Studentname, std.StudentEmail, std.PhoneNumber, std.DateOfBirth, std.Password, std.ConfirmPawword,courseId);
+                    InsertModel(std);
 
                     foreach (var course in courseList)
                     {
-                        DbContext.AddStudentCourcesUsingStorProcedure(Convert.ToInt32(course),(int) item );
+                        //   DbContext.AddStudentCourcesUsingStorProcedure(Convert.ToInt32(course),(int) item );
                         // This Code Not Use Because I Am Using StoreProcedure
 
-                        //StudentCourse stdCourse = new StudentCourse();
-                        //stdCourse.StudentId = std.StudentId;
-                        //stdCourse.CourseId = Convert.ToInt32(course);
-                        //DbContext.studentCourses.Add(stdCourse);
-
+                        DbContext.studentCourses.Add(new StudentCourse { 
+                            StudentId= std.StudentId,
+                            CourseId= Convert.ToInt32(course)
+                        });
                     }
                     DbContext.SaveChanges();
                     return true;
@@ -49,12 +48,18 @@ namespace Repository.Repository
                 List<FullStudentDto> StudentList = new List<FullStudentDto>();
                 try
                 {
-                    var studentes = (from s in DbContext.students
+                    var studentes = (from s in DbContext.students.Where(x=>x.UserId==pager.UserId)
                                      select new FullStudentDto()
                                      {
-                                         studentDto = s,
+                                         StudentId = s.StudentId,
+                                         Studentname = s.Studentname,
+                                         StudentEmail = s.StudentEmail,
+                                         DateOfBirth = s.DateOfBirth,
+                                         Password = s.Password,
+                                         ConfirmPawword = s.ConfirmPawword,
+                                         PhoneNumber = s.PhoneNumber,
                                          StudentCourseCount = DbContext.studentCourses.Where(sc => sc.StudentId == s.StudentId).Count(),
-                                     }).OrderBy(id => id.studentDto.StudentId).Skip(pager.start).Take(pager.length).ToList();
+                                     }).OrderBy(x => x.StudentId).Skip(pager.start).Take(pager.length).ToList();
                     studentes[0].TotalRecord = DbContext.students.Count();
                     return studentes;
                 }
@@ -73,8 +78,14 @@ namespace Repository.Repository
                 {  
                     var EditStd = (from s in DbConetxt.students.Where(x => x.StudentId == stdid)
                                    select new FullStudentDtoo
-                                   { 
-                                       studentDto = s,
+                                   {
+                                       StudentId = s.StudentId,
+                                       Studentname = s.Studentname,
+                                       StudentEmail = s.StudentEmail,
+                                       DateOfBirth = s.DateOfBirth,
+                                       Password = s.Password,
+                                       ConfirmPawword = s.ConfirmPawword,
+                                       PhoneNumber = s.PhoneNumber,
                                        Listcourses = (from c in DbConetxt.courses select new CourseDto {CourseId =c.CourseId,CourseName=c.CourseName }).ToList(),
                                        StudentCourses = (from sc in DbConetxt.studentCourses
                                                          join c in DbConetxt.courses on sc.CourseId equals c.CourseId
@@ -101,7 +112,7 @@ namespace Repository.Repository
             {
                 try
                 {
-                    var update = DbConetxt.students.FirstOrDefault(u => u.StudentId == UpdateStd.StudentId);
+                    var update = DbConetxt.students.FirstOrDefault(u => u.StudentId == UpdateStd.StudentId );
                     if (update != null)
                     {
                         UpdateModel(UpdateStd);
@@ -110,11 +121,12 @@ namespace Repository.Repository
                         
                         foreach (var CoursesId in courseList)
                         {
-                           
-                            StudentCourse stdCourse = new StudentCourse();
-                            stdCourse.StudentId = update.StudentId;
-                            stdCourse.CourseId = Convert.ToInt32(CoursesId);
-                            DbConetxt.studentCourses.Add(stdCourse);
+                        
+                            DbConetxt.studentCourses.Add(new StudentCourse
+                            {
+                                StudentId=update.StudentId,
+                                CourseId= Convert.ToInt32(CoursesId)
+                        });
                         }
                         DbConetxt.SaveChanges();
                         return true;
