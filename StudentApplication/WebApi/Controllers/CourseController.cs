@@ -1,26 +1,21 @@
-﻿using Repository.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using IRepository.IRepository;
 using System.Web.Http;
 
 namespace WebApi.Controllers
 {
     public class CourseController : ApiController
     {
-        private CourseRepository _courseRepository;
-        public CourseController()
+        private ICourseRepository _courseRepository;
+        public CourseController(ICourseRepository courserepo)
         {
-            _courseRepository = new CourseRepository();
+            _courseRepository = courserepo;
         }
         [HttpGet]
 
         public IHttpActionResult GetAllCourse()
         {
-           var Item= _courseRepository.GetModel();
-            if(Item!=null)
+             var Item= _courseRepository.GetModel();
+            if (Item != null)
             {
                 return Ok(Item);
             }

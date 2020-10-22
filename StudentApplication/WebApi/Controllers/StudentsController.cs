@@ -1,6 +1,6 @@
-﻿using Models.DataModels;
-using Repository.DTOModel;
-using Repository.Repository;
+﻿using DtoLayer.DTOModel;
+using IRepository.IRepository;
+using Models.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -10,10 +10,10 @@ namespace WebApi.Controllers
     public class StudentsController : BaseController
     {
      
-        private StudentRepositoryP _studentRepositoryp;
-        public StudentsController()
+        private IStudentRepository _studentRepositoryp;
+        public StudentsController(IStudentRepository studentRepository)
         {   
-            _studentRepositoryp = new StudentRepositoryP();
+            _studentRepositoryp = studentRepository;
         }
         [Authorize(Roles ="SuperAdmin,Admin")]
         [HttpPost]
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
             }
             return BadRequest("Student not added");
         }
-        [Authorize(Roles = "SuperAdmin,Admin")]
+       [Authorize(Roles = "SuperAdmin,Admin")]
         [HttpPost]
         public IHttpActionResult LoardData(Pager pager)
         {
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var check = _studentRepositoryp.DeleteModel(id);
+                var check = _studentRepositoryp.DleteStudent(id);
                 return Ok(check);
             }
             catch(Exception e)

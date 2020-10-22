@@ -1,19 +1,25 @@
-﻿using Microsoft.Owin.Security;
+﻿using IRepository.IRepository;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
-using Repository.Repository;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+
 using WebApi.App_Start;
 
 namespace WebApi.Providers
 {
     public class Provider : OAuthAuthorizationServerProvider
     {
+        private IUserRepository _userRepository;
 
+     
+        public Provider(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
 
@@ -21,8 +27,8 @@ namespace WebApi.Providers
             {
                 var username = context.UserName;
                 var password = context.Password;
-                var userRepository = new UserRepository();
-                var user = userRepository.ValidateUser(username, password);   // UserDTO user = UserDAL.ValidateUser(username, password);
+                // var userRepository = new UserRepository();
+                var user = _userRepository.ValidateUser(username, password);   // UserDTO user = UserDAL.ValidateUser(username, password);
                 if (user != null)
                 {
                     var claims = new List<Claim>()
@@ -31,13 +37,16 @@ namespace WebApi.Providers
                         new Claim(ClaimTypes.Name, user.Name),
                         new Claim(ClaimTypes.Email, user.Email)
                     };
+                    foreach (var role in user.roleDto)
+                        claims.Add(new Claim(ClaimTypes.Role, role.Title));
+                    //   ClaimsIdentity oAuthIdentity = new ClaimsIdentity(claims, Startup.OAuthOptions.AuthenticationType);
                     var props = new AuthenticationProperties(new Dictionary<string, string>
                     {
                       {"Name",user.Name},
                       {"Email",user.Email },
                       {"UserId",user.UserId.ToString()},
                     });
-                    ClaimsIdentity oAutIdentity = new ClaimsIdentity(claims, Startup.OAuthOptions.AuthenticationType);
+                        ClaimsIdentity oAutIdentity = new ClaimsIdentity(claims, Startup.OAuthOptions.AuthenticationType);
                     context.Validated(new AuthenticationTicket(oAutIdentity, props));
                 }
                 else

@@ -1,4 +1,5 @@
-﻿using Data.Context;
+﻿using IData;
+using IRepository.IRepository;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,19 +7,20 @@ namespace Repository.Repository
 {
     public class BaseRepository<T> : _IAllRepository<T> where T : class
     {
-        private context _DbConetxt;
+        private readonly Icontext _icontext;
         private IDbSet<T> dbEntity;
-        public BaseRepository()
+
+        public BaseRepository(Icontext icontext)
         {
-            _DbConetxt = new context();
-            dbEntity = _DbConetxt.Set<T>();
+            _icontext = icontext;
            
+            dbEntity = _icontext.Set<T>();
         }
         public bool AddRange(List<T> List)
         {
             if (List != null)
             {
-                _DbConetxt.Set<T>().AddRange(List);
+                _icontext.Set<T>().AddRange(List);
                 return true;
             }
             return false;
@@ -49,7 +51,7 @@ namespace Repository.Repository
         {
             if (List != null)
             {
-                _DbConetxt.Set<T>().RemoveRange(List);
+                _icontext.Set<T>().RemoveRange(List);
                 return true;
             }
             return false;
@@ -74,12 +76,12 @@ namespace Repository.Repository
         }
         public void Save()
         {
-            _DbConetxt.SaveChanges();
+            _icontext.SaveChanges();
 
         }
         public bool UpdateModel(T Model)
         {
-            _DbConetxt.Entry(Model).State =  System.Data.Entity.EntityState.Modified;
+            _icontext.Entry(Model).State =  System.Data.Entity.EntityState.Modified;
              Save();
             return true;
         }
