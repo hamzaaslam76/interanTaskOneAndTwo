@@ -1,8 +1,8 @@
 ﻿using DtoLayer.DTOModel;
 using IRepository.IRepository;
 using Ninject;
-
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace StudentWindowsFormApplication
@@ -13,14 +13,12 @@ namespace StudentWindowsFormApplication
         private readonly IKernel getkernel;
         int getuserId;
         public ListOfStudent(IKernel kernel,int userId)
-        {
-            
+        {  
             _studentRepository = kernel.Get<IStudentRepository>();
             getkernel = kernel;
             getuserId = userId;
             InitializeComponent();
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -43,11 +41,8 @@ namespace StudentWindowsFormApplication
                         refresh();
                     }
                 }
-           
         }
-
         }
-
         private void ListOfStudent_Load(object sender, EventArgs e)
         {
             refresh();
@@ -59,7 +54,15 @@ namespace StudentWindowsFormApplication
             page.start = 0;
             page.UserId = getuserId;
             dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = _studentRepository.GettAllStudents(page);
+            var StudentModel = _studentRepository.GettAllStudents(page);
+            foreach (var item in StudentModel)
+            {
+                var n = (FullStudentDto)(item);
+                this.CourseName.DisplayMember = "CourseName";
+                this.CourseName.ValueMember = "CourseId";
+                this.CourseName.DataSource = n.ListStudentCourses;
+            }
+           dataGridView1.DataSource = _studentRepository.GettAllStudents(page);
         }
     }
 }
