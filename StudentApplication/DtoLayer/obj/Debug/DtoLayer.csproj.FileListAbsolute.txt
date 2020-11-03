@@ -1,0 +1,10 @@
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\bin\Debug\DtoLayer.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\bin\Debug\DtoLayer.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\obj\Debug\DtoLayer.csprojAssemblyReference.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\obj\Debug\DtoLayer.csproj.CoreCompileInputs.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\obj\Debug\DtoLayer.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\obj\Debug\DtoLayer.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\bin\Debug\Models.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\bin\Debug\Models.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\bin\Debug\Models.dll.config
+E:\InteranshipWork\TaskOneTwo\StudentApplication\DtoLayer\obj\Debug\DtoLayer.csproj.CopyComplete

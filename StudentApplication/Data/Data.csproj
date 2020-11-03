@@ -52,10 +52,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\context.cs" />
-    <Compile Include="DataModels\student.cs" />
-    <Compile Include="Migrations\202009300611188_AddStudetTable.cs" />
-    <Compile Include="Migrations\202009300611188_AddStudetTable.designer.cs">
-      <DependentUpon>202009300611188_AddStudetTable.cs</DependentUpon>
+    <Compile Include="Migrations\202010130948398_DeleteStoreProcedureStudet.cs" />
+    <Compile Include="Migrations\202010130948398_DeleteStoreProcedureStudet.Designer.cs">
+      <DependentUpon>202010130948398_DeleteStoreProcedureStudet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010131025353_GetStudentUsingSrtoeProcedure.cs" />
+    <Compile Include="Migrations\202010131025353_GetStudentUsingSrtoeProcedure.Designer.cs">
+      <DependentUpon>202010131025353_GetStudentUsingSrtoeProcedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010161224533_adtbles.cs" />
+    <Compile Include="Migrations\202010161224533_adtbles.designer.cs">
+      <DependentUpon>202010161224533_adtbles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010200952312_addUserIdInStudentTable.cs" />
+    <Compile Include="Migrations\202010200952312_addUserIdInStudentTable.designer.cs">
+      <DependentUpon>202010200952312_addUserIdInStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010201319397_addstudentUsingStoreProcedure.cs" />
+    <Compile Include="Migrations\202010201319397_addstudentUsingStoreProcedure.designer.cs">
+      <DependentUpon>202010201319397_addstudentUsingStoreProcedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010201822438_kkd.cs" />
+    <Compile Include="Migrations\202010201822438_kkd.designer.cs">
+      <DependentUpon>202010201822438_kkd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010201832052_adasd.cs" />
+    <Compile Include="Migrations\202010201832052_adasd.designer.cs">
+      <DependentUpon>202010201832052_adasd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011020624304_addimageurlinstudettable.cs" />
+    <Compile Include="Migrations\202011020624304_addimageurlinstudettable.designer.cs">
+      <DependentUpon>202011020624304_addimageurlinstudettable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011030950208_addthumbnailfilel.cs" />
+    <Compile Include="Migrations\202011030950208_addthumbnailfilel.designer.cs">
+      <DependentUpon>202011030950208_addthumbnailfilel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,8 +96,46 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009300611188_AddStudetTable.resx">
-      <DependentUpon>202009300611188_AddStudetTable.cs</DependentUpon>
+    <ProjectReference Include="..\IData\IData.csproj">
+      <Project>{889459e4-9e08-4653-b91a-fc332945a416}</Project>
+      <Name>IData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{54faad04-43dc-4f05-b1cc-12004eaab48b}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{c4c91f93-173d-44cd-8e3d-161ac8b6ec8c}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010130948398_DeleteStoreProcedureStudet.resx">
+      <DependentUpon>202010130948398_DeleteStoreProcedureStudet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010131025353_GetStudentUsingSrtoeProcedure.resx">
+      <DependentUpon>202010131025353_GetStudentUsingSrtoeProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010161224533_adtbles.resx">
+      <DependentUpon>202010161224533_adtbles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010200952312_addUserIdInStudentTable.resx">
+      <DependentUpon>202010200952312_addUserIdInStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010201319397_addstudentUsingStoreProcedure.resx">
+      <DependentUpon>202010201319397_addstudentUsingStoreProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010201822438_kkd.resx">
+      <DependentUpon>202010201822438_kkd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010201832052_adasd.resx">
+      <DependentUpon>202010201832052_adasd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011020624304_addimageurlinstudettable.resx">
+      <DependentUpon>202011020624304_addimageurlinstudettable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011030950208_addthumbnailfilel.resx">
+      <DependentUpon>202011030950208_addthumbnailfilel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

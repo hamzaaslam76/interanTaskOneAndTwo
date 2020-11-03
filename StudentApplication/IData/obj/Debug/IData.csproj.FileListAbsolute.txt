@@ -1,0 +1,15 @@
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\IData.dll.config
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\IData.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\IData.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\EntityFramework.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\EntityFramework.SqlServer.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\Models.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\Models.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\Models.dll.config
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\EntityFramework.xml
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\bin\Debug\EntityFramework.SqlServer.xml
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\obj\Debug\IData.csprojAssemblyReference.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\obj\Debug\IData.csproj.CoreCompileInputs.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\obj\Debug\IData.csproj.CopyComplete
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\obj\Debug\IData.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IData\obj\Debug\IData.pdb

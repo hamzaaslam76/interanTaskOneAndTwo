@@ -1,0 +1,12 @@
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\IRepository.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\IRepository.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\DtoLayer.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\Models.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\DtoLayer.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\Models.pdb
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\bin\Debug\Models.dll.config
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\obj\Debug\IRepository.csprojAssemblyReference.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\obj\Debug\IRepository.csproj.CoreCompileInputs.cache
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\obj\Debug\IRepository.csproj.CopyComplete
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\obj\Debug\IRepository.dll
+E:\InteranshipWork\TaskOneTwo\StudentApplication\IRepository\obj\Debug\IRepository.pdb
