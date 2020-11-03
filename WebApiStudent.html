@@ -16,6 +16,7 @@
 </style>
 </head>
 <body>
+    
 <div class="bs-example row">
     <div class="col-md-6">
          <div class="form-group col-md-8">
@@ -74,24 +75,30 @@
 
 <div class="form-group col-md-6 ">
     <div class="form-group col-md-8">
-    <button id ="btn" class="btn btn-success">Save</button>
+     <img id="image" src="" width="200" /> 
+     <input id="getUrl" type="hidden"> 
+     <input id="getThumbnailUrl" type="hidden"> 
+    <input id ="chose" type="file"  accept="image/*" onchange="readURL(this)" >
+   
+</div>
+</div>
+<div class="form-group col-md-6 ">
+    <div class="form-group col-md-8">
+    <button id ="btn" type="button" class="btn btn-success">Save</button>
     <a href="WebApiStudentList.html">ListOfStudent</a>
 </div>
-
 </div>
-</div>
-
 <script src="script/Validation.js"></script>
-<script src="/script/WebApiUrlAssess.js"></script>
+<script src="script/WebApiUrlAssess.js"></script>
 <script src="script/WebApiShowTable.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
 <script>
     $('#myselect').select2({
         placeholder:"choose Courses"
     });
 GetCourseInTable();
+var user=JSON.parse(sessionStorage.getItem("fullresult"));
+$('#uName').text(user.Name);
 </script>
-
 </body>
 </html>
