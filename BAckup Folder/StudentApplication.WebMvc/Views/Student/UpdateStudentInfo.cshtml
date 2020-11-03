@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "UpdateStudentInfo";
+}
+
+
+<head>
+
+    <script src="~/MyScrpit/Validation.js"></script>
+    <script src="~/MyScrpit/MvcAjaxUrl.js"></script>
+    
+    
+</head>
+<body>
+    <div class="bs-example row">
+        <div class="col-md-6">
+            <div class="form-group col-md-8">
+                <label>Name</label>
+                <input type="email" class="form-control" id="esname" placeholder="Name">
+                <div id="chname" class="text-danger"></div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6 ">
+            <div class="form-group col-md-8">
+                <label>Email</label>
+                <input type="email" class="form-control" id="eemail" placeholder="Email" required>
+                <div id="chemail" class="text-danger"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group col-md-8">
+                <label>Phone Number</label>
+                <input type="text" class="form-control" id="ephone" placeholder="Phone Number" required>
+                <div id="chphone" class="text-danger"></div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6 ">
+            <div class="form-group col-md-8">
+                <label>Course</label>
+                <select id="myselect" class="form-control" multiple="multiple"></select>
+                <div id="chcourse"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group col-md-8">
+                <label>Date</label>
+                <input type="date" class="form-control" id="edate" placeholder="Date" required>
+                <div id="chdate" class="text-danger"></div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6 ">
+            <div class="form-group col-md-8">
+                <label>Password</label>
+                <input type="password" class="form-control" id="epassword" placeholder="Password" required>
+                <div id="chpassword" class="text-danger"></div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6 ">
+            <div class="form-group col-md-8">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" id="econfirmpassword" placeholder="Confirm Password" required>
+                <div id="chconpassword" class="text-danger"></div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 ">
+            <div class="form-group col-md-8">
+                <button id="ebtn" class="btn btn-primary">Edit</button>
+                <a href="WebApiStudentList.html">ListOfStudent</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+

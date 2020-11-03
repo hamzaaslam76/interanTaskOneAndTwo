@@ -1,0 +1,102 @@
+﻿@model Repository.DTOModel.FullStudentDtoo
+    @{ 
+      //  var CourseData = Model.StudentCourses;
+    }
+    <head>
+
+        <script src="~/MyScrpit/Validation.js"></script>
+        <script src="~/MyScrpit/MvcAjaxUrl.js"></script>
+
+        <script src="~/MyScrpit/AddStudent.js"></script>
+
+    </head>
+    <body>
+        <div class="bs-example row">
+            <div class="col-md-6">
+                <div class="form-group col-md-8">
+                    <label >Name</label>
+                    <input type="email" class="form-control" id="esname" placeholder="Name" value="@Model.studentDto.Studentname">
+                    <div id="chname" class="text-danger"></div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6 ">
+                <div class="form-group col-md-8">
+                    <label>Email</label>
+                    <input type="email" class="form-control" id="eemail" placeholder="Email" value="@Model.studentDto.StudentEmail">
+                    <div id="chemail" class="text-danger"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group col-md-8">
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" id="ephone" placeholder="Phone Number" value="@Model.studentDto.PhoneNumber">
+                    <div id="chphone" class="text-danger"></div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6 ">
+                <div class="form-group col-md-8">
+                    <label>Course</label>
+                    <select id="myselect" class="form-control" multiple="multiple">
+                        @foreach (var course in Model.Listcourses)
+                        {
+                            var check = false;
+
+                            foreach (var item in Model.StudentCourses)
+                            {
+                                if (item.CourseId == course.CourseId)
+                                {
+                                    <option class="select2" value="@course.CourseId" selected>@course.CourseName</option>
+                                    check = true;
+                                }
+
+                            }
+                            if (!check)
+                            {
+                            <option class="select2" value="@course.CourseId">@course.CourseName</option>
+                            }
+                        }
+                    </select>
+                    <div id="chcourse"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group col-md-8">
+                    <label>Date</label>
+                    <input type="date" class="form-control" id="edate" placeholder="Date" value="@Model.studentDto.DateOfBirth">
+                    <div id="chdate" class="text-danger"></div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6 ">
+                <div class="form-group col-md-8">
+                    <label>Password</label>
+                    <input type="password" class="form-control" id="epassword" placeholder="Password" value="@Model.studentDto.Password">
+                    <div id="chpassword" class="text-danger"></div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6 ">
+                <div class="form-group col-md-8">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" id="econfirmpassword" placeholder="Confirm Password" value="@Model.studentDto.ConfirmPawword">
+                    <div id="chconpassword" class="text-danger"></div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6 ">
+                <div class="form-group col-md-8">
+                    <button id="ebtn" value="@Model.studentDto.StudentId" class="btn btn-primary">Edit</button>
+                    <a href="@Url.Action("Index","Student")">ListOfStudent</a>
+                </div>
+
+            </div>
+        </div>
+    </body>
+
+
+
+

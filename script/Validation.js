@@ -21,3 +21,11 @@ function checkdate(dat)
 {
     return /^\s+$/.test(dat);
 }
+
+function DateCheck(date)
+{
+    if(data == "")
+    {
+        
+    }
+}

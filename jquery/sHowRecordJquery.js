@@ -51,7 +51,7 @@ function editstudent(val) {
     
 debugger;
     localStorage.setItem('editrecord', JSON.stringify(val));
-    window.location.href="EditRecord.html"
+    window.location.href="EditRecord.html";
 
 }
 var getindex = JSON.parse(localStorage.getItem('editrecord'));

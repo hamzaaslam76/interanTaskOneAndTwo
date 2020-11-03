@@ -1,77 +1,71 @@
-﻿using Models.DataModels;
-using Repository.Repository;
+﻿using DtoLayer.DTOModel;
+using IRepository.IRepository;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-
 namespace WebApi.Controllers
 {
-    public class StudentsController : ApiController
-    {
-        private StudentRepository _studentRepository;
-        public StudentsController()
-        {
-            _studentRepository = new StudentRepository();
+    public class StudentsController : BaseController
+    {     
+        private IStudentRepository _studentRepositoryp;
+        public StudentsController(IStudentRepository studentRepository)
+        {   
+            _studentRepositoryp = studentRepository;
         }
-
+        [Authorize(Roles ="SuperAdmin,Admin")]
         [HttpPost]
-        public IHttpActionResult AddNewStudent([FromBody]Student addstd)
+        //api/Student/?student=student&&courseid=arr
+        public IHttpActionResult AddNewStudent([FromBody] StudentDto studentes , string courseID)
         {
-            var item = _studentRepository.AddStudent(addstd);
-            if(item == true)
+            studentes.UserId = USER_ID;
+            var courseList = courseID.Split(',').ToList();
+            var item = _studentRepositoryp.AddStudent(studentes, courseList);
+            if (item == true)
             {
                 return Ok(item);
             }
             return BadRequest("Student not added");
         }
-
-        [HttpGet]
-
-        public IHttpActionResult getStudent()
+       [Authorize(Roles = "SuperAdmin,Admin")]
+        [HttpPost]
+        public IHttpActionResult LoardData(Pager pager)
         {
-            var item = _studentRepository.getStudentList();
-            return Ok(item);
+            pager.UserId = USER_ID;
+            List<FullStudentDto> StudentModel = _studentRepositoryp.GettAllStudents(pager);
+            return Json(new { draw = pager.draw, recordsFiltered = StudentModel[0].TotalRecord, recordsTotal = StudentModel[0].TotalRecord, data = StudentModel });
+
         }
         [HttpDelete]
         public IHttpActionResult DeleteStudent(int id)
         {
-            var item = _studentRepository.deletestd(id);
-            if(item == true)
+            try
             {
-                return Ok(item);
+                var check = _studentRepositoryp.DeleteModel(id);
+                return Ok(check);
             }
-            return BadRequest("Student not Deleted");
-
+            catch(Exception e)
+            {
+                return Ok("Student not Deleted");
+            }
         }
         [HttpPut]
-
-        public IHttpActionResult UpdateStudent([FromBody]Student upstd,int id)
+        [Authorize(Roles ="SuperAdmin,Admin")]
+        public IHttpActionResult UpdateStudent([FromBody] StudentDto student,string courseID)
         {
-            var item = _studentRepository.updateStudent(upstd, id);
-            if(item == true)
-            {
-                return Ok(item);
-            }
-            return BadRequest("Data Not Found");
+            student.UserId = USER_ID;
+            var courseList = courseID.Split(',').ToList();
+            return Ok(_studentRepositoryp.UpdateStudent(student, courseList));       
         }
-
         [HttpGet]
-        
         public IHttpActionResult getStudentById(int id)
         {
-            var Item = _studentRepository.SearchStudent(id);
+            var Item = _studentRepositoryp.SearchStudent(id);
             if(Item!=null)
             {
                 return Ok(Item);
             }
             return BadRequest ("Student Not Found ");
         }
-        
-
-
     }
 }

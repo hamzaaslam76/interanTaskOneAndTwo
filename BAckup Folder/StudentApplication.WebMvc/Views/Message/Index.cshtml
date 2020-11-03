@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<form >
+  <label class="">To</label>
+    <input id="To" class="form-control" type="text" />
+    <label class="">Message</label>
+    <input id="message" class="form-control" type="text" />
+    
+    <input id="btn" class="btn btn-success form-control" value="Send" >
+
+</form>
+
+<script>
+   
+    $('#btn').click(function () {
+        debugger;
+        var message = {
+            "date_sent": "2019-08-24T14:15:22Z",
+            "message_id": "string",
+            "from_number": "03496198794",
+            "to_number": $('#to').val(),
+            "sms_thread_id": 0,
+            "delivered": true,
+            "delivery_info": {
+                "status": "string",
+                "err": "string",
+                "level": 0,
+                "submit_date": "2019-08-24T14:15:22Z",
+                "done_date": "2019-08-24T14:15:22Z",
+                "messages_submitted": 0,
+                "messages_delivered": 0
+            },
+            "content": $('#to').val(),
+            "segment_count": 0,
+            "coding": 0,
+            "mms": true,
+            "attachment": "string",
+            "attachment_mime_type": "string",
+            "attachment_file_name": "string"
+        }
+
+
+        $.ajax({
+            url: 'https://api.apeiron.io/v2/sms/' + message,
+          
+        }).done(function (data) {
+            debugger;
+            console.log(data);
+        }).fail(function () {
+        });
+    });
+   
+</script>

@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    var message = ViewBag.message;
+}
+<head>
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+
+@if (message != "" && message != null)
+{
+    <h1>@message</h1>
+}
+
+<h2>View</h2>
+<table id="myTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date of birth</th>
+            <th>Password</th>
+            <th>Total Course</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+</table>
+<script>
+            $(document).ready(function () {
+                $("#myTable").DataTable({
+
+                    "processing": true,
+                    "serverSide": true,
+                    "filter": false,
+                    "orderMulti": false,
+                    "ajax": {
+                    "url": '@Url.Action("LoardData", "Student")',
+                    "type": "post",
+                    "datatype": "json",
+                    },
+                     "columns": [
+                {
+                    "autoWidth": true, "render": function (Id, type, full, meta) {
+
+                        return `${full.studentDto.StudentId}`
+                    }
+                },
+                {
+                     "autoWidth": true, "render": function (Id, type, full, meta) {
+                        return `${full.studentDto.Studentname}`
+                    }
+                },
+
+                {
+                    "autoWidth": true, "render": function (Id, type, full, meta) {
+                        return `${full.studentDto.StudentEmail}`
+                    }
+                },
+                {
+                    "autoWith": true, "render": function (Id, type, full, meta) {
+                        return `${full.studentDto.PhoneNumber}`
+
+                    }
+                },
+                {
+                    "autoWith": true, "render": function (Id, type, full, meta) {
+                        return `${full.studentDto.DateOfBirth}`
+
+                    }
+                },
+                {
+                    "autoWith": true, "render": function (Id, type, full, meta) {
+                        return `${full.studentDto.Password}`
+
+                    }
+                },
+                {
+                    "autoWith": true, "render": function (Id, type, full, meta) {
+                        return `${full.StudentCourseCount}`
+
+                    }
+                },
+                {
+
+                    "autoWith": true, "render": function (Id, type, full, meta) {
+                        return `<a class="editBtn btn btn-primary glyphicon glyphicon-edit" href="/Student/UpdateRecordInfo/?id=${full.studentDto.StudentId}"> Edit</a>
+                                 <a class="deleteBtn glyphicon btn btn-danger glyphicon-remove"  href="/Student/DeleteStudent/?id=${full.studentDto.StudentId}">Delete</a>`
+
+                    }
+                },
+            ]
+                });
+            });
+</script>
+
+
